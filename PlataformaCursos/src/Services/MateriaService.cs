@@ -3,7 +3,7 @@ using PlataformaCurso.Models;
 public class MateriaService
 
 {
-    public delegate void MateriaCriadaEventHandler(object source ,EventArgs args);
+    public delegate void MateriaCriadaEventHandler(object source ,materiaEventArgs args);
 
     public event MateriaCriadaEventHandler MateriaCriada;
 
@@ -14,11 +14,29 @@ public class MateriaService
             MateriaCriada(this, EventArgs.Empty);
         }
     }
-    public void MateriaNoSistema(object source, EventArgs args)
-    {
-    
-    }
 
+    public void MateriaCriada()
+    {
+        Console.WriteLine("teste");
+        Thread.Sleep(3000); 
+
+        Materia.nossamateria(materia);
+    }
+    protected virtual void nossamateria(Materia materia)
+    {
+        if (MateriaCriada != null)
+        {
+            var args = new materiaEventArgs() { materia = materia };
+            MateriaCriada(this, args);
+        }
+    }
+    public void materianossa(object source, EventArgs args)
+    {
+        MandarEmail();
+        Console.WriteLine(
+          $" {args.materia} ");
+    }
+    
     /////////////////////////
     private List<Materia> ListaDeMaterias = new List<Materia>();
 
@@ -35,7 +53,9 @@ public class MateriaService
 
             
             novaMateria = new Materia(nome, professorResponsavel);
-            
+            MateriaCriada += materianossa; 
+            Console.WriteLine("Materia cadastrada com sucesso!");
+             
         
         }
     }

@@ -29,8 +29,4 @@ public class ProfessorService
     {
         return this.ListaDeProfessores;
     }
-    public void MateriaNoSistema(object source, EventArgs args)
-    {
-            
-    }
 }

@@ -20,7 +20,6 @@ public class Materia {
             this.ProfessorResponsavel = null;
         }
     }
-   
 
     public bool MatricularAluno(Aluno aluno)
     {
