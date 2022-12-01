@@ -1,28 +1,22 @@
 using PlataformaCurso.Models;
 
 public class MateriaService
-
 {
-    public delegate void MateriaCriadaEventHandler(object source ,materiaEventArgs args);
+////////////////////////////////////////////////////////////////////////////////
+ public delegate void MateriaCriadaEventHandler(object source , EventArgs args);
 
-    public event MateriaCriadaEventHandler MateriaCriada;
+public event MateriaCriadaEventHandler MateriaCriada;
 
- public void CriacaoMateria()
+
+    public void newmateria(Materia  materia)
     {
-        if (MateriaCriada != null)
-        {
-            MateriaCriada(this, EventArgs.Empty);
-        }
+        Console.WriteLine("Materia sendo adicionada.....");
+        Thread.Sleep(3000); // Simular uma demora de 3s
+
+        implementarmateria(materia);
     }
 
-    public void MateriaCriada()
-    {
-        Console.WriteLine("teste");
-        Thread.Sleep(3000); 
-
-        Materia.nossamateria(materia);
-    }
-    protected virtual void nossamateria(Materia materia)
+    protected virtual void implementarmateria(Materia materia)
     {
         if (MateriaCriada != null)
         {
@@ -30,14 +24,8 @@ public class MateriaService
             MateriaCriada(this, args);
         }
     }
-    public void materianossa(object source, EventArgs args)
-    {
-        MandarEmail();
-        Console.WriteLine(
-          $" {args.materia} ");
-    }
-    
-    /////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
     private List<Materia> ListaDeMaterias = new List<Materia>();
 
     public void CriarMateria(List<Professor> professoresPossiveis)
@@ -50,18 +38,12 @@ public class MateriaService
         if (!string.IsNullOrEmpty(nome))
         {
             var professorResponsavel = SelecionaProfessorResponsavel(professoresPossiveis);
-
             
             novaMateria = new Materia(nome, professorResponsavel);
-            MateriaCriada += materianossa; 
+            newmateria; 
             Console.WriteLine("Materia cadastrada com sucesso!");
-             
-        
         }
     }
-   
-
-     
 
     private Professor? SelecionaProfessorResponsavel(List<Professor> professores)
     {
