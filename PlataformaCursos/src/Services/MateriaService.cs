@@ -13,7 +13,7 @@ public event MateriaCriadaEventHandler MateriaCriada;
     public void newmateria(Materia  materia)
     {
         Console.WriteLine("Materia sendo adicionada.....");
-        Thread.Sleep(3000); // Simular uma demora de 3s
+        Thread.Sleep(3000); 
 
         implementarmateria(materia);
     }
