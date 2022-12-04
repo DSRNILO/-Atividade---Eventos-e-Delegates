@@ -1,9 +1,11 @@
+using System;
+using System.Collections.Generic;
 using PlataformaCurso.Models;
 
 public class MateriaService
-{
-////////////////////////////////////////////////////////////////////////////////
- public delegate void MateriaCriadaEventHandler(object source , EventArgs args);
+
+{////////////////////////////////////////////////////////////////////////////////
+ public delegate void MateriaCriadaEventHandler(object source , MateriaEventArgs args);
 
 public event MateriaCriadaEventHandler MateriaCriada;
 
@@ -20,7 +22,7 @@ public event MateriaCriadaEventHandler MateriaCriada;
     {
         if (MateriaCriada != null)
         {
-            var args = new materiaEventArgs() { materia = materia };
+            var args = new MateriaEventArgs() ;
             MateriaCriada(this, args);
         }
     }
@@ -38,9 +40,9 @@ public event MateriaCriadaEventHandler MateriaCriada;
         if (!string.IsNullOrEmpty(nome))
         {
             var professorResponsavel = SelecionaProfessorResponsavel(professoresPossiveis);
-            
+
             novaMateria = new Materia(nome, professorResponsavel);
-            newmateria; 
+            newmateria(novaMateria);
             Console.WriteLine("Materia cadastrada com sucesso!");
         }
     }
@@ -49,13 +51,14 @@ public event MateriaCriadaEventHandler MateriaCriada;
     {
         Console.WriteLine("Escolha o professor responsável (SELECIONE A OPÇÂO)");
 
-        for(int i = 0; i < professores.Count; i++) {
-            Console.WriteLine($"{i+1} - {professores[i].Nome}");
+        for (int i = 0; i < professores.Count; i++)
+        {
+            Console.WriteLine($"{i + 1} - {professores[i].Nome}");
         }
 
         var textoDigitado = Console.ReadLine();
 
-        if(!string.IsNullOrEmpty(textoDigitado))
+        if (!string.IsNullOrEmpty(textoDigitado))
         {
             var indice = int.Parse(textoDigitado) - 1;
             return professores[indice];

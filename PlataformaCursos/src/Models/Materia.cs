@@ -1,10 +1,9 @@
 namespace PlataformaCurso.Models;
 
 public class Materia {
-    public string ?Nome { get; set; }
+    public string Nome { get; set; }
     public List<Aluno> Alunos { get; set; } = new List<Aluno>();
     public Professor? ProfessorResponsavel { get; set; }
-
 
     public Materia(string nome, Professor? professorResponsavel)
     {

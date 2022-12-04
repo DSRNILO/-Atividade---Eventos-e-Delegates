@@ -29,6 +29,4 @@ public class CoordenadorService
     {
         return this.ListaDeCoordenador;
     }
-
-    
 }

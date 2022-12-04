@@ -1,6 +1,7 @@
 using System;
+using PlataformaCurso.Models;
 
-public class materiaEventArgs : EventArgs
+public class MateriaEventArgs : EventArgs
 {
   public Materia materia { get; set; }
 }
